@@ -35,7 +35,7 @@ class BoardViewController: UIViewController {
     
     @IBAction func boxButtonPressed(sender: AnyObject) {
         let buttonTag = sender.tag!
-        print("Button \(buttonTag) was pressed")
+        print("Button \(buttonTag) was pressed hi!")
     }
 
 }
