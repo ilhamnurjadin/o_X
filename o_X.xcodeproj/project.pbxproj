@@ -12,6 +12,7 @@
 		02F782CB1D22966600E3BC29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F782C91D22966600E3BC29 /* Main.storyboard */; };
 		02F782CD1D22966600E3BC29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F782CC1D22966600E3BC29 /* Assets.xcassets */; };
 		02F782D01D22966600E3BC29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F782CE1D22966600E3BC29 /* LaunchScreen.storyboard */; };
+		F3AE2F2F1D23D4D400B7A30F /* OXGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AE2F2E1D23D4D400B7A30F /* OXGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		02F782CC1D22966600E3BC29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02F782CF1D22966600E3BC29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02F782D11D22966600E3BC29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3AE2F2E1D23D4D400B7A30F /* OXGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OXGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		02F782C41D22966600E3BC29 /* o_X */ = {
 			isa = PBXGroup;
 			children = (
+				F3AE2F2D1D23D4B200B7A30F /* Model */,
 				02F782C51D22966600E3BC29 /* AppDelegate.swift */,
 				02F782C71D22966600E3BC29 /* BoardViewController.swift */,
 				02F782C91D22966600E3BC29 /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				02F782D11D22966600E3BC29 /* Info.plist */,
 			);
 			path = o_X;
+			sourceTree = "<group>";
+		};
+		F3AE2F2D1D23D4B200B7A30F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F3AE2F2E1D23D4D400B7A30F /* OXGame.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02F782C81D22966600E3BC29 /* BoardViewController.swift in Sources */,
+				F3AE2F2F1D23D4D400B7A30F /* OXGame.swift in Sources */,
 				02F782C61D22966600E3BC29 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@ import UIKit
 
 class BoardViewController: UIViewController {
     
+    // Subviews
     @IBOutlet weak var newGameButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var boxButton1: UIButton!
@@ -18,6 +19,9 @@ class BoardViewController: UIViewController {
     @IBOutlet weak var boxButton7: UIButton!
     @IBOutlet weak var boxButton8: UIButton!
     @IBOutlet weak var boxButton9: UIButton!
+    
+    // New
+    var gameObject = OXGame()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +39,13 @@ class BoardViewController: UIViewController {
     
     @IBAction func boxButtonPressed(sender: AnyObject) {
         let buttonTag = sender.tag!
-        print("Button \(buttonTag) was pressed hi!")
+        print("Button \(buttonTag) was pressed!")
+        
+        if gameObject.checkButtonValidity(buttonTag) == true {
+            gameObject.numOfTurns += 1
+            gameObject.updateTurn()
+            gameObject.playMove(buttonTag)
+        }
     }
 
 }
