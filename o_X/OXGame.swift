@@ -27,6 +27,10 @@ class OXGame {
     var numOfTurns = 0
     var currentTurn: CellType = CellType.X
     
+    init() {
+        
+    }
+    
     // Methods
     func turnCount() -> Int {
         print(numOfTurns)
@@ -68,14 +72,14 @@ class OXGame {
         */
     }
     
-    func checkButtonValidity(cellNumber: Int) -> Bool {
-        if board[cellNumber] != CellType.Empty {
-            return false
-        }
-        return true
-    }
-    
+    // Does multiple things:
+    // checks whether cell is empty, increases # of turns, updates turns, etc
     func playMove(cellNumber: Int) -> CellType {
+        if board[cellNumber] != CellType.Empty {
+            return board[cellNumber]
+        }
+        numOfTurns += 1
+        updateTurn()
         board[cellNumber] = currentTurn
         print("This is now an \(currentTurn)")
         return currentTurn
@@ -83,41 +87,48 @@ class OXGame {
     
     func gameWon() -> Bool {
         // first row
-        if (board[0] == board[1] && board[0] == board[2]) {
+        if ((board[0], board[1]) == (board[1], board[2])) && ((board[0] == CellType.O) || (board[0] == CellType.X)) {
+            print("row 1")
             return true
         }
         // second row
-        else if (board[3] == board[4] && board[3] == board[5]) {
+        else if ((board[3], board[4]) == (board[4], board[5])) && ((board[3] == CellType.O) || (board[3] == CellType.X)) {
+            print("row 2")
             return true
         }
         // third row
-        else if (board[6] == board[7] && board[6] == board[8]) {
+        else if ((board[6], board[7]) == (board[7], board[8])) && ((board[6] == CellType.O) || (board[6] == CellType.X)) {
+            print("row 3")
             return true
         }
         // first column
-        else if (board[0] == board[3] && board[0] == board[6]) {
+        else if ((board[0], board[3]) == (board[3], board[6])) && ((board[0] == CellType.O) || (board[0] == CellType.X)) {
+            print("column 1")
             return true
         }
         // second column
-        else if (board[1] == board[4] && board[1] == board[7]) {
+        else if ((board[1], board[4]) == (board[4], board[7])) && ((board[1] == CellType.O) || (board[1] == CellType.X)) {
+            print("column 2")
             return true
         }
         // third column
-        else if (board[2] == board[5] && board[2] == board[8]) {
+        else if ((board[2], board[5]) == (board[5], board[8])) && ((board[2] == CellType.O) || (board[2] == CellType.X)) {
+            print("column 3")
             return true
         }
         // right bottom diagonal
-        else if (board[0] == board[4] && board[0] == board[8]) {
+        else if ((board[0],board[4]) == (board[4], board[8])) && ((board[0] == CellType.O) || (board[0] == CellType.X)) {
+            print("right bottom diagonal")
             return true
         }
         // right top diagonal
-        else if (board[6] == board[4] && board[6] == board[2]) {
+        else if ((board[6], board[4]) == (board[4], board[2])) && ((board[6] == CellType.O) || (board[6] == CellType.X)) {
+            print("right top diagonal")
             return true
         }
         return false
     }
     
-    // start here
     func state() -> OXGameState {
         if gameWon() == true {
             return OXGameState.Won
@@ -136,6 +147,7 @@ class OXGame {
             board[i] = CellType.Empty
             i += 1
         }
+        numOfTurns = 0
     }
     
 }
