@@ -7,51 +7,12 @@ import UIKit
 
 class BoardViewController: UIViewController {
     
-    /*
-     
-     // creates an alert (programatically as opposed to using storyboard)
-     let alert = UIAlertController(title: "Hey there", message:  "Pick a color", preferredStyle: UIAlertControllerStyle.Alert)
-     
-     // creating alert actions (buttons)
-     let alertActionRed = UIAlertAction(title: "Red", style: .Default, handler: { (action) in
-     // action in the input refers tot he alertActionRed object itself (self-referential)
-     // it is assumed that when you run the code, the alertActionRed has already been created
-     
-     self.view.backgroundColor = UIColor.redColor()
-     // print(action.title)
-     
-     })
-     
-     let alertActionBlue = UIAlertAction(title: "Blue", style: .Default, handler: { (nil) in
-     // input can be nil, since we aren't using the input anyway
-     
-     self.view.backgroundColor = UIColor.blueColor()
-     
-     })
-     
-     // add actions/buttons
-     alert.addAction(alertActionRed)
-     alert.addAction(alertActionBlue)
-     
-     // present the alert in the view
-     self.presentViewController(alert, animated: true, completion: nil)
-     
-     */
-    
     // Subviews
     @IBOutlet weak var newGameButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
-    @IBOutlet weak var boxButton1: UIButton!
-    @IBOutlet weak var boxButton2: UIButton!
-    @IBOutlet weak var boxButton3: UIButton!
-    @IBOutlet weak var boxButton4: UIButton!
-    @IBOutlet weak var boxButton5: UIButton!
-    @IBOutlet weak var boxButton6: UIButton!
-    @IBOutlet weak var boxButton7: UIButton!
-    @IBOutlet weak var boxButton8: UIButton!
-    @IBOutlet weak var boxButton9: UIButton!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var playerCPUSwitch: UISwitch!
     
     // New
     //var gameObject = OXGame()
@@ -73,6 +34,14 @@ class BoardViewController: UIViewController {
     
     @IBAction func logoutButtonPressed(sender: AnyObject) {
         print("Logout button pressed")
+        
+        UserController.sharedInstance.logout { (errorMessage: String?) in
+            
+        }
+        let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()
+        self.presentViewController(vc!, animated: true, completion: nil)
+        
     }
     
     @IBAction func boxButtonPressed(sender: UIButton) {
