@@ -225,9 +225,20 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujg-0k-670" userLabel="Status">
+                                <rect key="frame" x="240" y="499" width="120" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="GeB-2e-eE6"/>
+                                    <constraint firstAttribute="width" constant="120" id="KzK-dt-qmQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ujg-0k-670" firstAttribute="centerY" secondItem="qwm-i2-zcO" secondAttribute="centerY" multiplier="1.7" id="55r-WB-lL5"/>
                             <constraint firstItem="l2i-sw-fEu" firstAttribute="centerX" secondItem="qwm-i2-zcO" secondAttribute="centerX" id="D38-zf-F13"/>
                             <constraint firstItem="83p-Vc-oLw" firstAttribute="leading" secondItem="qwm-i2-zcO" secondAttribute="leading" constant="20" id="H60-jA-wpE"/>
                             <constraint firstAttribute="trailing" secondItem="8sT-lM-Y1i" secondAttribute="trailing" constant="25" id="J2D-PW-kLx"/>
@@ -237,6 +248,7 @@
                             <constraint firstItem="83p-Vc-oLw" firstAttribute="top" secondItem="qwm-i2-zcO" secondAttribute="top" constant="30" id="QyV-bz-HkT"/>
                             <constraint firstItem="l2i-sw-fEu" firstAttribute="top" secondItem="qwm-i2-zcO" secondAttribute="topMargin" constant="30" id="bUY-Sx-Toj"/>
                             <constraint firstItem="Np9-zX-1Vy" firstAttribute="top" secondItem="HZi-10-hT9" secondAttribute="bottom" id="hVw-jn-wTX"/>
+                            <constraint firstItem="ujg-0k-670" firstAttribute="centerX" secondItem="qwm-i2-zcO" secondAttribute="centerX" id="iGQ-dr-jOn"/>
                             <constraint firstItem="HZi-10-hT9" firstAttribute="leading" secondItem="qwm-i2-zcO" secondAttribute="leading" id="ozh-BA-0jg"/>
                             <constraint firstItem="8sT-lM-Y1i" firstAttribute="centerX" secondItem="qwm-i2-zcO" secondAttribute="centerX" id="pYY-VI-DhW"/>
                             <constraint firstItem="HZi-10-hT9" firstAttribute="centerX" secondItem="qwm-i2-zcO" secondAttribute="centerX" id="uag-dW-kue"/>
@@ -266,6 +278,7 @@
                         <outlet property="containerView" destination="8sT-lM-Y1i" id="55r-j8-NAj"/>
                         <outlet property="logoutButton" destination="83p-Vc-oLw" id="t3z-ZR-Zp5"/>
                         <outlet property="newGameButton" destination="HZi-10-hT9" id="BB2-LX-lH0"/>
+                        <outlet property="statusLabel" destination="ujg-0k-670" id="Dcb-zT-m7a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

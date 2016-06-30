@@ -20,6 +20,7 @@ class BoardViewController: UIViewController {
     @IBOutlet weak var boxButton8: UIButton!
     @IBOutlet weak var boxButton9: UIButton!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var statusLabel: UILabel!
     
     // New
     //var gameObject = OXGame()
@@ -28,6 +29,8 @@ class BoardViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
+        
+        statusLabel.text = OXGameController.sharedInstance.getStateInString()
     }
     
     @IBAction func newGameButtonPressed(sender: UIButton) {
@@ -43,19 +46,18 @@ class BoardViewController: UIViewController {
         let buttonTag = sender.tag
         print("Button \(buttonTag) was pressed!")
         
+        let temp:String = OXGameController.sharedInstance.playMove(buttonTag).rawValue
+        
         // sets title of button to X or O, depending on who is playing
-        sender.setTitle(OXGameController.sharedInstance.playMove(buttonTag).rawValue, forState: .Normal)
+        sender.setTitle(temp, forState: .Normal)
+        // make buttons unclickable
+        sender.enabled = false
+        // Change status label
+        statusLabel.text = OXGameController.sharedInstance.getStateInString()
         
         // Checking for game state - determining if game is over
         // This is still printed if game is over
         if OXGameController.sharedInstance.getCurrentGame().state() != OXGameState.InProgress {
-            if OXGameController.sharedInstance.getCurrentGame().state() ==  OXGameState.Won {
-                print("Congrats, \(OXGameController.sharedInstance.getCurrentGame().currentTurn) wins!")
-            }
-            if OXGameController.sharedInstance.getCurrentGame().state() ==  OXGameState.Tie {
-                print("It's a tie!")
-            }
-            // make buttons unclickable
             for subview in containerView.subviews {
                 if let button = subview as? UIButton {
                     button.enabled = false
@@ -66,6 +68,7 @@ class BoardViewController: UIViewController {
     
     func restartGame() {
         OXGameController.sharedInstance.restartGame()
+        statusLabel.text = OXGameController.sharedInstance.getStateInString()
         
         for subview in containerView.subviews {
             if let button = subview as? UIButton {

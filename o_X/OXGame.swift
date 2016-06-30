@@ -37,14 +37,14 @@ class OXGame {
         return numOfTurns
     }
     
-    func updateTurn() {
+    func updateTurn() -> CellType {
         if currentTurn == CellType.X {
             currentTurn = CellType.O
         }
         else if currentTurn == CellType.O {
             currentTurn = CellType.X
         }
-        print(currentTurn)
+        return currentTurn
     }
     
     func whoseTurn() -> CellType {
@@ -72,17 +72,27 @@ class OXGame {
         */
     }
     
+    func flipTurn() -> CellType {
+        // returns a flipped currentTurn
+        let temp = updateTurn()
+        updateTurn()
+        return temp
+    }
+    
     // Does multiple things:
     // checks whether cell is empty, increases # of turns, updates turns, etc
     func playMove(cellNumber: Int) -> CellType {
+        /*
         if board[cellNumber] != CellType.Empty {
             return board[cellNumber]
         }
+         */
         numOfTurns += 1
-        updateTurn()
         board[cellNumber] = currentTurn
         print("This is now an \(currentTurn)")
-        return currentTurn
+        let temp = currentTurn
+        updateTurn()
+        return temp
     }
     
     func gameWon() -> Bool {
@@ -148,6 +158,7 @@ class OXGame {
             i += 1
         }
         numOfTurns = 0
+        currentTurn = startType
     }
     
 }

@@ -28,5 +28,16 @@ class OXGameController {
         return currentGame.playMove(cellNumber)
     }
     
+    func getStateInString() -> String {
+        switch currentGame.state() {
+        case OXGameState.Won:
+            return "\(self.currentGame.flipTurn()) Wins!"
+        case OXGameState.Tie:
+            return "It's a Tie!"
+        default:
+            return "\(self.currentGame.whoseTurn())'s Turn"
+        }
+    }
+    
 }
 
