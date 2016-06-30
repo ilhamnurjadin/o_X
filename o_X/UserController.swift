@@ -23,20 +23,30 @@ class UserController {
     
     func register(email: String, password: String, onCompletion: (User?, String?) -> Void) {
         
-        let tempUser = User(newEmail: email, newPassword: password)
+        // Check if password is smaller than 6 characters
+        if password.characters.count < 6 {
+            onCompletion(nil, "Password must be longer than 6 characters")
+            return
+        }
         
+        // Check if email is null
+        if email == "" {
+            onCompletion(nil, "Missing an email address")
+            return
+        }
+        
+        // Check if email has been used
         for x in users {
             if email == x.email {
                 onCompletion(nil, "Email already used")
                 return
             }
-            else if password.characters.count < 6 {
-                onCompletion(nil, "Password must be longer than 6 characters")
-                return
-            }
         }
         
+        let tempUser = User(newEmail: email, newPassword: password)
         onCompletion(tempUser, nil)
+        
+        // set to current user and append to user list
         currentUser = tempUser
         users.append(tempUser)
         
@@ -46,6 +56,7 @@ class UserController {
         
         let tempUser = User(newEmail: email, newPassword: password)
         
+        // Check for existing user
         for x in users {
             if x.equals(tempUser) {
                 onCompletion(tempUser, nil)
@@ -53,7 +64,7 @@ class UserController {
             }
         }
         
-        onCompletion(nil, "Incorrect username or password")
+        onCompletion(nil, "Incorrect Username or Password")
         currentUser = tempUser
         
     }

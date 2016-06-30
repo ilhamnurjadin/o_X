@@ -33,7 +33,7 @@ class RegisterViewController: UIViewController {
         UserController.sharedInstance.register(self.emailTextField.text!, password: self.passwordTextField.text!) { (resultUser: User?, errorMessage: String? ) in
             
             if resultUser == nil {
-                self.createAlert(errorMessage!)
+                self.createAlert("Registration Unsuccessful", submessage: errorMessage!)
                 return
             }
             
@@ -45,10 +45,10 @@ class RegisterViewController: UIViewController {
         
     }
     
-    func createAlert(errorMessage: String) {
+    func createAlert(titleMessage: String, submessage: String) {
         
         // creates an alert (programatically as opposed to using storyboard)
-        let alert = UIAlertController(title: "Something went wrong", message:  errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: titleMessage, message:  submessage, preferredStyle: UIAlertControllerStyle.Alert)
         
         // creating alert actions (buttons)
         let alertActionDismiss = UIAlertAction(title: "Dismiss", style: .Cancel, handler: { (action) in

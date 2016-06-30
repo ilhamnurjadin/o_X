@@ -18,18 +18,27 @@ class BoardViewController: UIViewController {
     //var gameObject = OXGame()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        // Do any additional setup after loading the view, typically from a nib.
+        super.viewDidLoad()
         
         statusLabel.text = OXGameController.sharedInstance.getStateInString()
         newGameButton.hidden = true
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        // Alert
+        createAlert("Login Successful", submessage: "Welcome")
+        
     }
     
     @IBAction func newGameButtonPressed(sender: UIButton) {
+        
         print("New game button pressed.")
         restartGame()
         sender.hidden = true
+        
     }
     
     @IBAction func logoutButtonPressed(sender: AnyObject) {
@@ -50,12 +59,9 @@ class BoardViewController: UIViewController {
         
         let temp:String = OXGameController.sharedInstance.playMove(buttonTag).rawValue
         
-        // sets title of button to X or O, depending on who is playing
-        sender.setTitle(temp, forState: .Normal)
-        // make buttons unclickable
-        sender.enabled = false
-        // Change status label
-        statusLabel.text = OXGameController.sharedInstance.getStateInString()
+        sender.setTitle(temp, forState: .Normal)                                  // sets title of button to X or O, depending on who is playing
+        sender.enabled = false                                                    // make buttons unclickable
+        statusLabel.text = OXGameController.sharedInstance.getStateInString()     // Change status label
         
         endGame()
     }
@@ -96,6 +102,26 @@ class BoardViewController: UIViewController {
         }
     }
     
+    func createAlert(titleMessage: String, submessage: String) {
+        
+        // creates an alert (programatically as opposed to using storyboard)
+        let alert = UIAlertController(title: titleMessage, message:  submessage, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        // creating alert actions (buttons)
+        let alertActionDismiss = UIAlertAction(title: "OK", style: .Cancel, handler: { (action) in
+            // action in the input refers to the alertActionDismiss object itself (self-referential)
+            // it is assumed that when you run the code, the alertActionDismiss has already been created
+            
+        })
+        
+        // add actions/buttons
+        alert.addAction(alertActionDismiss)
+        
+        // present the alert in the view
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
     func restartGame() {
         OXGameController.sharedInstance.restartGame()
         statusLabel.text = OXGameController.sharedInstance.getStateInString()
@@ -108,17 +134,6 @@ class BoardViewController: UIViewController {
                 button.enabled = true
             }
         }
-        /*
-        boxButton1.setTitle("", forState: UIControlState.Normal)
-        boxButton2.setTitle("", forState: UIControlState.Normal)
-        boxButton3.setTitle("", forState: UIControlState.Normal)
-        boxButton4.setTitle("", forState: UIControlState.Normal)
-        boxButton5.setTitle("", forState: UIControlState.Normal)
-        boxButton6.setTitle("", forState: UIControlState.Normal)
-        boxButton7.setTitle("", forState: UIControlState.Normal)
-        boxButton8.setTitle("", forState: UIControlState.Normal)
-        boxButton9.setTitle("", forState: UIControlState.Normal)
-        */
     }
 
 }

@@ -30,8 +30,9 @@ class LoginViewController: UIViewController {
         
         UserController.sharedInstance.login(self.emailTextField.text!, password: self.passwordTextField.text!) { (resultUser: User?, errorMessage: String? ) in
             
+            // If there is an error logging in
             if errorMessage != nil {
-                self.createAlert(errorMessage!)
+                self.createAlert("Login Unsuccessful", submessage: errorMessage!)
                 return
             }
             
@@ -42,10 +43,10 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func createAlert(errorMessage: String) {
+    func createAlert(titleMessage: String, submessage: String) {
         
          // creates an alert (programatically as opposed to using storyboard)
-         let alert = UIAlertController(title: "Something went wrong", message:  errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
+         let alert = UIAlertController(title: titleMessage, message:  submessage, preferredStyle: UIAlertControllerStyle.Alert)
          
          // creating alert actions (buttons)
          let alertActionDismiss = UIAlertAction(title: "Dismiss", style: .Cancel, handler: { (action) in
