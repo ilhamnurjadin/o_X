@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonPressed(sender: UIButton) {
         
-        UserController.sharedInstance.login(self.emailTextField.text!, password: self.passwordTextField.text!) { (resultUser: User?, errorMessage: String? ) in
+        UserController.sharedInstance.login(email: self.emailTextField.text!, password: self.passwordTextField.text!) { resultUser, errorMessage in
             
             // If there is an error logging in
             if errorMessage != nil {
@@ -38,7 +38,9 @@ class LoginViewController: UIViewController {
             
             let storyboard = UIStoryboard(name: "Board", bundle: nil)
             let vc = storyboard.instantiateInitialViewController()
-            self.presentViewController(vc!, animated: true, completion: nil)
+            let application = UIApplication.sharedApplication()
+            let window = application.keyWindow
+            window?.rootViewController = vc
             
         }
     }

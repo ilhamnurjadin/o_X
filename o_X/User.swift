@@ -18,11 +18,4 @@ class User {
         password = newPassword
     }
     
-    func equals(otherUser: User) -> Bool {
-        if (email == otherUser.email) && (password == otherUser.password) {
-            return true
-        }
-        return false
-    }
-    
 }

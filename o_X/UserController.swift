@@ -10,6 +10,9 @@ import Foundation
 
 class UserController {
     
+    // Creatimg a reference to the NSUserData -- a default persistent dictionary
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
     static var sharedInstance = UserController()
     var currentUser: User?
     private var users = [User]()
@@ -21,7 +24,7 @@ class UserController {
         return false
     }
     
-    func register(email: String, password: String, onCompletion: (User?, String?) -> Void) {
+    func register(email email: String, password: String, onCompletion: (User?, String?) -> Void) {
         
         // Check if password is smaller than 6 characters
         if password.characters.count < 6 {
@@ -43,35 +46,51 @@ class UserController {
             }
         }
         
-        let tempUser = User(newEmail: email, newPassword: password)
-        onCompletion(tempUser, nil)
-        
         // set to current user and append to user list
-        currentUser = tempUser
-        users.append(tempUser)
+        currentUser = User(newEmail: email, newPassword: password)
+        users.append(currentUser!)
+        onCompletion(currentUser, nil)
+        
+        
+        // PERSISTENCE
+        // Creating/Overwriting the data
+        defaults.setObject(email, forKey: "currentUserEmail")
+        defaults.setObject(password, forKey: "currentUserPassword")
+        defaults.synchronize()
+        // defaults is a reference to the NSUserData
         
     }
     
-    func login(email: String, password: String, onCompletion: (User?, String?) -> Void) {
-        
-        let tempUser = User(newEmail: email, newPassword: password)
+    func login(email email: String, password: String, onCompletion: (User?, String?) -> Void) {
         
         // Check for existing user
         for x in users {
-            if x.equals(tempUser) {
-                onCompletion(tempUser, nil)
+            if x.email == email && x.password == password {
+                currentUser = x
+                onCompletion(x, nil)
+                
+                // PERSISTENCE
+                // Creating/Overwriting the data
+                defaults.setObject(email, forKey: "currentUserEmail")
+                defaults.setObject(password, forKey: "currentUserPassword")
+                defaults.synchronize()
+                
                 return
             }
         }
         
         onCompletion(nil, "Incorrect Username or Password")
-        currentUser = tempUser
+        return
+        // defaults is a reference to the NSUserData
         
     }
     
-    func logout(onCompletion: (String?) -> Void) {
+    func logout(onCompletion onCompletion: (String?) -> Void) {
         currentUser = nil
         onCompletion(nil)
+        defaults.removeObjectForKey("currentUserEmail")
+        defaults.removeObjectForKey("currentUserPassword")
+        defaults.synchronize()
     }
     
 }

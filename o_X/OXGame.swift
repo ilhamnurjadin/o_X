@@ -18,20 +18,78 @@ enum OXGameState : String {
     case InProgress
     case Tie
     case Won
+    case Open = "Open"
+    case Abandoned = "Abandoned"
 }
 
 class OXGame {
+    
+    var ID: Int = 42
+    var host: String = "my@email.sucks"
     
     var board = [CellType](count: 9, repeatedValue: CellType.Empty)
     var startType: CellType = CellType.X
     var numOfTurns = 0
     var currentTurn: CellType = CellType.X
     
-    init() {
+    init()  {
+        //we are simulating setting our board from the internet
+        let simulatedBoardStringFromNetwork = "________o" //update this string to different values to test your model serialisation
+        self.board = deserialiseBoard(simulatedBoardStringFromNetwork) //your OXGame board model should get set here
+        if(simulatedBoardStringFromNetwork == serialiseBoard())    {
+            print("start\n------------------------------------")
+            print("congratulations, you successfully deserialised your board and serialized it again correctly. You can send your data model over the internet with this code. 1 step closer to network OX ;)")
+            
+            print("done\n------------------------------------")
+        }   else    {
+            print("start\n------------------------------------")
+            print ("your board deserialisation and serialization was not correct :( carry on coding on those functions")
+            
+            print("done\n------------------------------------")
+        }
         
     }
     
     // Methods
+    
+    private func deserialiseBoard(boardString: String) -> [CellType] {
+        
+        var tempArray = [CellType]()
+        
+        for char in boardString.characters {
+            switch char {
+            case "x":
+                tempArray.append(CellType.X)
+            case "o":
+                tempArray.append(CellType.O)
+            default:
+                tempArray.append(CellType.Empty)
+            }
+        }
+        
+        return tempArray
+        
+    }
+    
+    private func serialiseBoard() -> String {
+        
+        var tempString = ""
+        
+        for cell in board {
+            switch cell {
+            case CellType.X:
+                tempString = tempString + "x"
+            case CellType.O:
+                tempString = tempString + "o"
+            default:
+                tempString = tempString + "_"
+            }
+        }
+        
+        return tempString
+        
+    }
+    
     func turnCount() -> Int {
         print(numOfTurns)
         return numOfTurns

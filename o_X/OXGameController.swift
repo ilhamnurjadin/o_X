@@ -13,7 +13,6 @@ class OXGameController {
     
     static let sharedInstance = OXGameController()
     private init() {}
-    
     private var currentGame = OXGame()
     
     func getCurrentGame() -> OXGame {
@@ -37,6 +36,10 @@ class OXGameController {
         default:
             return "\(self.currentGame.whoseTurn())'s Turn"
         }
+    }
+    
+    func getGames(onCompletion onCompletion: ([OXGame]?, String?) -> Void) {
+        onCompletion([OXGame(), OXGame(), OXGame()], nil)
     }
     
 }

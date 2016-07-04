@@ -19,6 +19,7 @@
 		F38FEDD51D25638200C1062A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FEDD41D25638200C1062A /* RegisterViewController.swift */; };
 		F3AE2F2F1D23D4D400B7A30F /* OXGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AE2F2E1D23D4D400B7A30F /* OXGame.swift */; };
 		F3AE2F381D240C1500B7A30F /* OXGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AE2F371D240C1500B7A30F /* OXGameController.swift */; };
+		F3ED5BED1D2A6F3900ED5571 /* NetworkGamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ED5BEC1D2A6F3900ED5571 /* NetworkGamesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F38FEDD41D25638200C1062A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F3AE2F2E1D23D4D400B7A30F /* OXGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OXGame.swift; sourceTree = "<group>"; };
 		F3AE2F371D240C1500B7A30F /* OXGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OXGameController.swift; sourceTree = "<group>"; };
+		F3ED5BEC1D2A6F3900ED5571 /* NetworkGamesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkGamesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				F38FEDCB1D25538600C1062A /* UserController.swift */,
 				F38FEDD21D25635E00C1062A /* LoginViewController.swift */,
 				F38FEDD41D25638200C1062A /* RegisterViewController.swift */,
+				F3ED5BEC1D2A6F3900ED5571 /* NetworkGamesTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				02F782C81D22966600E3BC29 /* BoardViewController.swift in Sources */,
 				F38FEDD51D25638200C1062A /* RegisterViewController.swift in Sources */,
 				F3AE2F2F1D23D4D400B7A30F /* OXGame.swift in Sources */,
+				F3ED5BED1D2A6F3900ED5571 /* NetworkGamesTableViewController.swift in Sources */,
 				F3AE2F381D240C1500B7A30F /* OXGameController.swift in Sources */,
 				F38FEDCA1D25537B00C1062A /* User.swift in Sources */,
 				02F782C61D22966600E3BC29 /* AppDelegate.swift in Sources */,

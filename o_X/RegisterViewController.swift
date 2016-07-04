@@ -30,7 +30,7 @@ class RegisterViewController: UIViewController {
         
         //let tempUser: User = User(newEmail: self.emailTextField.text!, newPassword: self.passwordTextField.text!)
         
-        UserController.sharedInstance.register(self.emailTextField.text!, password: self.passwordTextField.text!) { (resultUser: User?, errorMessage: String? ) in
+        UserController.sharedInstance.register(email: self.emailTextField.text!, password: self.passwordTextField.text!) { (resultUser: User?, errorMessage: String? ) in
             
             if resultUser == nil {
                 self.createAlert("Registration Unsuccessful", submessage: errorMessage!)
@@ -39,7 +39,9 @@ class RegisterViewController: UIViewController {
             
             let storyboard = UIStoryboard(name: "Board", bundle: nil)
             let vc = storyboard.instantiateInitialViewController()
-            self.presentViewController(vc!, animated: true, completion: nil)
+            let application = UIApplication.sharedApplication()
+            let window = application.keyWindow
+            window?.rootViewController = vc
             
         }
         

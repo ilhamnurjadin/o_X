@@ -13,6 +13,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Creating a reference to the NSUserDefaults for simplicity
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        // If a user was found in the NSUserData
+        if let currentUserEmail = defaults.stringForKey("currentUserEmail"),
+            currentUserPassword = defaults.stringForKey("currentUserPassword") {
+            
+            // Call register function to register the user
+            UserController.sharedInstance.register(email: currentUserEmail, password: currentUserPassword) { user, message in
+                
+                // If registration is successful, instantiate Board.storyboard
+                if user != nil {
+                    print("Hi")
+                    let storyboard = UIStoryboard(name: "Board", bundle: nil)
+                    let vc = storyboard.instantiateInitialViewController()
+                    self.window?.rootViewController = vc
+                }
+                
+            }
+            
+        }
+        
         return true
     }
 
