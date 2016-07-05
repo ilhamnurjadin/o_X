@@ -7,80 +7,110 @@
 //
 
 import Foundation
+import Alamofire
 
-class UserController {
+class UserController: WebService {
     
     // Creatimg a reference to the NSUserData -- a default persistent dictionary
     let defaults = NSUserDefaults.standardUserDefaults()
     
     static var sharedInstance = UserController()
     var currentUser: User?
-    private var users = [User]()
-    
-    func currentUserExists() -> Bool {
-        if currentUser != nil {
-            return true
-        }
-        return false
-    }
     
     func register(email email: String, password: String, onCompletion: (User?, String?) -> Void) {
         
-        // Check if password is smaller than 6 characters
-        if password.characters.count < 6 {
-            onCompletion(nil, "Password must be longer than 6 characters")
-            return
-        }
+        // Creating user as a dictionary
+        let user = ["email": email, "password": password]
         
-        // Check if email is null
-        if email == "" {
-            onCompletion(nil, "Missing an email address")
-            return
-        }
+        // CREATING A REQUEST
+        // A request has 4 things:
+        // 1. An endpoint
+        // 2. A method
+        // 3. Some input data (optional)
+        // 4. A response
         
-        // Check if email has been used
-        for x in users {
-            if email == x.email {
-                onCompletion(nil, "Email already used")
+        let request = self.createMutableAnonRequest(NSURL(string: "https://ox-backend.herokuapp.com/auth"), method: "POST", parameters: user)
+        
+        // Execute Request
+        self.executeRequest(request) { serverResponseCode, json in
+            
+            // If request could not be competed
+            if serverResponseCode == 0 {
+                onCompletion(nil, "Request could not be completed.")
                 return
             }
-        }
-        
-        // set to current user and append to user list
-        currentUser = User(newEmail: email, newPassword: password)
-        users.append(currentUser!)
-        onCompletion(currentUser, nil)
-        
-        
-        // PERSISTENCE
-        // Creating/Overwriting the data
-        defaults.setObject(email, forKey: "currentUserEmail")
-        defaults.setObject(password, forKey: "currentUserPassword")
-        defaults.synchronize()
-        // defaults is a reference to the NSUserData
-        
-    }
-    
-    func login(email email: String, password: String, onCompletion: (User?, String?) -> Void) {
-        
-        // Check for existing user
-        for x in users {
-            if x.email == email && x.password == password {
-                currentUser = x
-                onCompletion(x, nil)
+            
+            // If request could be completed
+            if (serverResponseCode / 100 == 2) {
+                
+                let tempUser = User(newEmail: json["data"]["email"].stringValue, newPassword: "not stored", newClient: json["data"]["client"].stringValue, newToken: json["data"]["token"].stringValue)
+                
+                self.currentUser = tempUser
                 
                 // PERSISTENCE
                 // Creating/Overwriting the data
-                defaults.setObject(email, forKey: "currentUserEmail")
-                defaults.setObject(password, forKey: "currentUserPassword")
-                defaults.synchronize()
+                self.defaults.setObject(tempUser.email, forKey: "currentUserEmail")
+                self.defaults.setObject(password, forKey: "currentUserPassword")
+                self.defaults.synchronize()
+                print("register")
                 
-                return
+                onCompletion(tempUser, "Registration Successful")
+                
             }
+            else {
+                onCompletion(nil, json["errors"]["full_messages"].arrayValue[0].stringValue)
+            }
+
         }
         
-        onCompletion(nil, "Incorrect Username or Password")
-        return
+    }
+   
+    func login(email email: String, password: String, onCompletion: (User?, String?) -> Void) {
+        
+        // Creating user as a dictionary
+        let user = ["email": email, "password": password]
+        
+        // CREATING A REQUEST
+        // A request has 4 things:
+        // 1. An endpoint
+        // 2. A method
+        // 3. Some input data (optional)
+        // 4. A response
+        
+        let request = self.createMutableAnonRequest(NSURL(string: "https://ox-backend.herokuapp.com/auth/sign_in"), method: "POST", parameters: user)
+        
+        // Execute Request
+        self.executeRequest(request) { serverResponseCode, json in
+            
+            // If request could not be competed
+            if serverResponseCode == 0 {
+                onCompletion(nil, "Request could not be completed.")
+                return
+            }
+            
+            // If request could be completed
+            if serverResponseCode == 200 {
+                
+                let tempUser = User(newEmail: json["data"]["email"].stringValue, newPassword: "not stored", newClient: json["data"]["client"].stringValue, newToken: json["data"]["token"].stringValue)
+                
+                self.currentUser = tempUser
+                
+                // PERSISTENCE
+                // Creating/Overwriting the data
+                self.defaults.setObject(email, forKey: "currentUserEmail")
+                self.defaults.setObject(password, forKey: "currentUserPassword")
+                self.defaults.synchronize()
+                print("login")
+                
+                onCompletion(tempUser, "Login Successful")
+                
+            }
+            else {
+                onCompletion(nil, json["errors"]["full_messages"].arrayValue[0].stringValue)
+            }
+            
+        }
+        
         // defaults is a reference to the NSUserData
         
     }

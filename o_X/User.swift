@@ -12,10 +12,14 @@ class User {
     
     var email:String = ""
     var password:String = ""
+    var token:String = ""
+    var client:String = ""
     
-    init(newEmail: String, newPassword: String) {
+    init(newEmail: String, newPassword: String, newClient: String, newToken: String) {
         email = newEmail
         password = newPassword
+        client = newClient
+        token = newToken
     }
     
 }

@@ -12,6 +12,9 @@
 		02F782CB1D22966600E3BC29 /* Board.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F782C91D22966600E3BC29 /* Board.storyboard */; };
 		02F782CD1D22966600E3BC29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F782CC1D22966600E3BC29 /* Assets.xcassets */; };
 		02F782D01D22966600E3BC29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F782CE1D22966600E3BC29 /* LaunchScreen.storyboard */; };
+		78BEA354AC6FD95409825BA7 /* Pods_o_X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970D47BF6414BDB597D283C0 /* Pods_o_X.framework */; };
+		F30087981D2BDA7600B04975 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30087971D2BDA7600B04975 /* WebService.swift */; };
+		F300879B1D2C1C8300B04975 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F300879A1D2C1C8300B04975 /* UIViewController.swift */; };
 		F38FEDCA1D25537B00C1062A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FEDC91D25537B00C1062A /* User.swift */; };
 		F38FEDCC1D25538600C1062A /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FEDCB1D25538600C1062A /* UserController.swift */; };
 		F38FEDD11D2561A300C1062A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38FEDCF1D2561A300C1062A /* Onboarding.storyboard */; };
@@ -30,6 +33,10 @@
 		02F782CC1D22966600E3BC29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02F782CF1D22966600E3BC29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02F782D11D22966600E3BC29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		587A4AF9BCCF06320FCBC91B /* Pods-o_X.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-o_X.release.xcconfig"; path = "Pods/Target Support Files/Pods-o_X/Pods-o_X.release.xcconfig"; sourceTree = "<group>"; };
+		970D47BF6414BDB597D283C0 /* Pods_o_X.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_o_X.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30087971D2BDA7600B04975 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		F300879A1D2C1C8300B04975 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		F38FEDC91D25537B00C1062A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F38FEDCB1D25538600C1062A /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		F38FEDD01D2561A300C1062A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Onboarding.storyboard; sourceTree = "<group>"; };
@@ -38,6 +45,7 @@
 		F3AE2F2E1D23D4D400B7A30F /* OXGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OXGame.swift; sourceTree = "<group>"; };
 		F3AE2F371D240C1500B7A30F /* OXGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OXGameController.swift; sourceTree = "<group>"; };
 		F3ED5BEC1D2A6F3900ED5571 /* NetworkGamesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkGamesTableViewController.swift; sourceTree = "<group>"; };
+		F985F671E1522191E03EB086 /* Pods-o_X.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-o_X.debug.xcconfig"; path = "Pods/Target Support Files/Pods-o_X/Pods-o_X.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78BEA354AC6FD95409825BA7 /* Pods_o_X.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +65,8 @@
 			children = (
 				02F782C41D22966600E3BC29 /* o_X */,
 				02F782C31D22966500E3BC29 /* Products */,
+				D7136334EB5F28E46B2FFAB5 /* Pods */,
+				71997860C59C3583AD162F25 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,12 +83,49 @@
 			children = (
 				02F782C51D22966600E3BC29 /* AppDelegate.swift */,
 				F3AE2F2D1D23D4B200B7A30F /* Model */,
-				F3AE2F351D240BCC00B7A30F /* Controllers */,
+				F30087961D2BDA5500B04975 /* Model Controllers */,
+				F3AE2F351D240BCC00B7A30F /* View Controllers */,
 				F3AE2F361D240BEB00B7A30F /* Views */,
 				02F782CC1D22966600E3BC29 /* Assets.xcassets */,
+				F30087991D2C1C6000B04975 /* Extensions */,
 				02F782D11D22966600E3BC29 /* Info.plist */,
 			);
 			path = o_X;
+			sourceTree = "<group>";
+		};
+		71997860C59C3583AD162F25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				970D47BF6414BDB597D283C0 /* Pods_o_X.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D7136334EB5F28E46B2FFAB5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F985F671E1522191E03EB086 /* Pods-o_X.debug.xcconfig */,
+				587A4AF9BCCF06320FCBC91B /* Pods-o_X.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F30087961D2BDA5500B04975 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F3AE2F371D240C1500B7A30F /* OXGameController.swift */,
+				F38FEDCB1D25538600C1062A /* UserController.swift */,
+				F30087971D2BDA7600B04975 /* WebService.swift */,
+			);
+			name = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		F30087991D2C1C6000B04975 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F300879A1D2C1C8300B04975 /* UIViewController.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		F3AE2F2D1D23D4B200B7A30F /* Model */ = {
@@ -89,17 +137,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		F3AE2F351D240BCC00B7A30F /* Controllers */ = {
+		F3AE2F351D240BCC00B7A30F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F3AE2F371D240C1500B7A30F /* OXGameController.swift */,
 				02F782C71D22966600E3BC29 /* BoardViewController.swift */,
-				F38FEDCB1D25538600C1062A /* UserController.swift */,
 				F38FEDD21D25635E00C1062A /* LoginViewController.swift */,
 				F38FEDD41D25638200C1062A /* RegisterViewController.swift */,
 				F3ED5BEC1D2A6F3900ED5571 /* NetworkGamesTableViewController.swift */,
 			);
-			name = Controllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		F3AE2F361D240BEB00B7A30F /* Views */ = {
@@ -119,9 +165,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02F782D41D22966600E3BC29 /* Build configuration list for PBXNativeTarget "o_X" */;
 			buildPhases = (
+				E3FADA41FB0DCA06D4E9488F /* [CP] Check Pods Manifest.lock */,
 				02F782BE1D22966500E3BC29 /* Sources */,
 				02F782BF1D22966500E3BC29 /* Frameworks */,
 				02F782C01D22966500E3BC29 /* Resources */,
+				F1ADFE76AEEDFD6E2B9AC92E /* [CP] Embed Pods Frameworks */,
+				70D85E2B6EC7C9E76F84CDFA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -179,6 +228,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		70D85E2B6EC7C9E76F84CDFA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-o_X/Pods-o_X-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3FADA41FB0DCA06D4E9488F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F1ADFE76AEEDFD6E2B9AC92E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-o_X/Pods-o_X-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		02F782BE1D22966500E3BC29 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -187,11 +284,13 @@
 				F38FEDD31D25635E00C1062A /* LoginViewController.swift in Sources */,
 				F38FEDCC1D25538600C1062A /* UserController.swift in Sources */,
 				02F782C81D22966600E3BC29 /* BoardViewController.swift in Sources */,
+				F300879B1D2C1C8300B04975 /* UIViewController.swift in Sources */,
 				F38FEDD51D25638200C1062A /* RegisterViewController.swift in Sources */,
 				F3AE2F2F1D23D4D400B7A30F /* OXGame.swift in Sources */,
 				F3ED5BED1D2A6F3900ED5571 /* NetworkGamesTableViewController.swift in Sources */,
 				F3AE2F381D240C1500B7A30F /* OXGameController.swift in Sources */,
 				F38FEDCA1D25537B00C1062A /* User.swift in Sources */,
+				F30087981D2BDA7600B04975 /* WebService.swift in Sources */,
 				02F782C61D22966600E3BC29 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +410,7 @@
 		};
 		02F782D51D22966600E3BC29 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F985F671E1522191E03EB086 /* Pods-o_X.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = o_X/Info.plist;
@@ -322,6 +422,7 @@
 		};
 		02F782D61D22966600E3BC29 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 587A4AF9BCCF06320FCBC91B /* Pods-o_X.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = o_X/Info.plist;

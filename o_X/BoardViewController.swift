@@ -8,7 +8,7 @@ import UIKit
 class BoardViewController: UIViewController {
     
     // Subviews
-    @IBOutlet weak var newGameButton: UIButton!
+    @IBOutlet weak var newGameButton: UIButton?
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
@@ -24,7 +24,7 @@ class BoardViewController: UIViewController {
         super.viewDidLoad()
         
         statusLabel.text = OXGameController.sharedInstance.getStateInString()
-        newGameButton.hidden = true
+        newGameButton?.hidden = true
         
         updateUI()
         
@@ -68,6 +68,8 @@ class BoardViewController: UIViewController {
         
         print("Logout button pressed")
         
+        restartGame()
+        
         UserController.sharedInstance.logout { (errorMessage: String?) in
             let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
             let vc = storyboard.instantiateInitialViewController()
@@ -89,6 +91,10 @@ class BoardViewController: UIViewController {
         checkIfGameEnded()
     }
     
+    @IBAction func exitGameBarButtonPressed(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     func checkIfGameEnded() {
         // Checking for game state - determining if game is over
         // This is still printed if game is over
@@ -105,7 +111,7 @@ class BoardViewController: UIViewController {
                 // action in the input refers tot he alertActionRed object itself (self-referential)
                 // it is assumed that when you run the code, the alertActionRed has already been created
                 
-                self.newGameButton.hidden = false
+                self.newGameButton?.hidden = false
                 
             })
             

@@ -22,8 +22,15 @@ class NetworkGamesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         
-        OXGameController.sharedInstance.getGames { (gameArray: [OXGame]?, message: String?) in
-            self.arrayOfGames = gameArray!
+        OXGameController.sharedInstance.getGameList { (gameArray: [OXGame]?, message: String?) in
+            if let gameArray = gameArray {
+                self.arrayOfGames = gameArray
+                self.tableView.reloadData()
+            } else {
+                self.createAlert(message!, submessage: "Please try again", onDismiss: { action in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+            }
         }
         
     }
@@ -51,14 +58,14 @@ class NetworkGamesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("CellIdentifier", forIndexPath: indexPath)
         
         // set text of cell EDIT HERE
-        cell.textLabel?.text = "something"
+        cell.textLabel?.text = "ID: " + String(arrayOfGames[indexPath.row].ID) + ", Host:" + arrayOfGames[indexPath.row].host
         
         return cell
         
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        self.performSegueWithIdentifier("networkGameSegue", sender: self)
     }
     
     /*
@@ -118,6 +125,18 @@ class NetworkGamesTableViewController: UITableViewController {
     
     @IBAction func doneBarButtonPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func addButtonPressed(sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier("networkGameSegue", sender: sender)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "networkGameSegue" {
+            if let destination = segue.destinationViewController as? BoardViewController {
+                destination.networkMode = true
+            }
+        }
     }
     
 }

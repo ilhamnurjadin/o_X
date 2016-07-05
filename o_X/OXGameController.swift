@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 // Model Controller
-class OXGameController {
+
+class OXGameController: WebService {
     
     static let sharedInstance = OXGameController()
-    private init() {}
+    override private init() {}                      // should this override?
     private var currentGame = OXGame()
     
     func getCurrentGame() -> OXGame {
@@ -38,8 +40,51 @@ class OXGameController {
         }
     }
     
-    func getGames(onCompletion onCompletion: ([OXGame]?, String?) -> Void) {
-        onCompletion([OXGame(), OXGame(), OXGame()], nil)
+    func getGameList(onCompletion onCompletion: ([OXGame]?, String?) -> Void) {
+        
+        // Creating user as a dictionary
+        
+        // CREATING A REQUEST
+        // A request has 4 things:
+        // 1. An endpoint
+        // 2. A method
+        // 3. Some input data (optional)
+        // 4. A response
+        
+        let request = self.createMutableRequest(NSURL(string: "https://ox-backend.herokuapp.com/games"), method: "GET")
+        
+        // Execute Request
+        self.executeRequest(request) { serverResponseCode, json in
+            
+            // If request could not be completed
+            if serverResponseCode == 0 {
+                onCompletion(nil, "Request could not be completed.")
+                return
+            }
+            
+            // If request could be completed
+            if (serverResponseCode / 100 == 2) {
+                
+                var arrayOfGames = [OXGame]()
+                
+                //If json is .Array
+                //The `index` is 0..<json.count's string value
+                for (index,subJson):(String, JSON) in json {
+                    let tempGame = OXGame()
+                    tempGame.ID = subJson["id"].intValue
+                    tempGame.host = subJson["host_user"]["email"].stringValue
+                    arrayOfGames.append(tempGame)
+                }
+                
+                onCompletion(arrayOfGames, "Games Found")
+                
+            }
+            else {
+                onCompletion(nil, json["errors"]["full_messages"].arrayValue[0].stringValue)
+            }
+            
+        }
+        
     }
     
 }

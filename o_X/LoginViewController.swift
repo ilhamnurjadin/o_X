@@ -15,8 +15,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(UserController.sharedInstance.currentUserExists())
 
         // Do any additional setup after loading the view.
     }
@@ -31,8 +29,13 @@ class LoginViewController: UIViewController {
         UserController.sharedInstance.login(email: self.emailTextField.text!, password: self.passwordTextField.text!) { resultUser, errorMessage in
             
             // If there is an error logging in
-            if errorMessage != nil {
-                self.createAlert("Login Unsuccessful", submessage: errorMessage!)
+            if resultUser == nil {
+                self.createAlert("Login Unsuccessful", submessage: errorMessage!) { (action) in
+                    // action in the input refers to the alertActionDismiss object itself (self-referential)
+                    // it is assumed that when you run the code, the alertActionDismiss has already been created
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
+                }
                 return
             }
             
@@ -43,29 +46,6 @@ class LoginViewController: UIViewController {
             window?.rootViewController = vc
             
         }
-    }
-    
-    func createAlert(titleMessage: String, submessage: String) {
-        
-         // creates an alert (programatically as opposed to using storyboard)
-         let alert = UIAlertController(title: titleMessage, message:  submessage, preferredStyle: UIAlertControllerStyle.Alert)
-         
-         // creating alert actions (buttons)
-         let alertActionDismiss = UIAlertAction(title: "Dismiss", style: .Cancel, handler: { (action) in
-         // action in the input refers to the alertActionDismiss object itself (self-referential)
-         // it is assumed that when you run the code, the alertActionDismiss has already been created
-            
-            self.emailTextField.text = ""
-            self.passwordTextField.text = ""
-            
-         })
-         
-         // add actions/buttons
-         alert.addAction(alertActionDismiss)
-         
-         // present the alert in the view
-         self.presentViewController(alert, animated: true, completion: nil)
-        
     }
 
     /*

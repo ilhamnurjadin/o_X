@@ -21,12 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let currentUserEmail = defaults.stringForKey("currentUserEmail"),
             currentUserPassword = defaults.stringForKey("currentUserPassword") {
             
-            // Call register function to register the user
-            UserController.sharedInstance.register(email: currentUserEmail, password: currentUserPassword) { user, message in
+            // Call login function to login the user
+            UserController.sharedInstance.login(email: currentUserEmail, password: currentUserPassword) { user, message in
                 
                 // If registration is successful, instantiate Board.storyboard
                 if user != nil {
-                    print("Hi")
                     let storyboard = UIStoryboard(name: "Board", bundle: nil)
                     let vc = storyboard.instantiateInitialViewController()
                     self.window?.rootViewController = vc
