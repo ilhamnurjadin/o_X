@@ -308,14 +308,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Find Online Games" id="EZZ-I0-kLT">
-                        <barButtonItem key="leftBarButtonItem" title="Done" id="2f9-NC-aNe">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="2f9-NC-aNe">
                             <connections>
                                 <action selector="doneBarButtonPressed:" destination="uqF-ER-eh9" id="zDr-zZ-Sv5"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hMU-Fw-S99">
                             <connections>
-                                <action selector="addButtonPressed:" destination="uqF-ER-eh9" id="LdR-yc-A69"/>
+                                <action selector="addButtonPressed:" destination="uqF-ER-eh9" id="78y-da-Dls"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -343,7 +343,7 @@
             </objects>
             <point key="canvasLocation" x="2026" y="548"/>
         </scene>
-        <!--Network Game-->
+        <!--Board View Controller-->
         <scene sceneID="yvJ-5X-Xvz">
             <objects>
                 <viewController id="Q1l-5b-0HD" customClass="BoardViewController" customModule="o_X" customModuleProvider="target" sceneMemberID="viewController">
@@ -532,16 +532,16 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRm-Ly-qCc" userLabel="Status">
-                                <rect key="frame" x="240" y="499" width="120" height="21"/>
+                                <rect key="frame" x="200" y="499" width="200" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="8d4-lk-Ac9"/>
+                                    <constraint firstAttribute="width" constant="200" id="8d4-lk-Ac9"/>
                                     <constraint firstAttribute="height" constant="21" id="Der-DL-x86"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awating for Opponent to Join..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V44-RM-keH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V44-RM-keH">
                                 <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.37529118760000002" blue="0.2182290096" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -557,9 +557,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Game" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5k-0r-fli">
+                                <rect key="frame" x="233" y="78" width="134" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="U5k-0r-fli" firstAttribute="centerX" secondItem="uxq-mi-HsN" secondAttribute="centerX" id="41r-Ti-Hlz"/>
                             <constraint firstItem="Woa-Qu-Bkh" firstAttribute="top" secondItem="uxq-mi-HsN" secondAttribute="topMargin" constant="30" id="5Jo-PQ-V6D"/>
                             <constraint firstItem="LRm-Ly-qCc" firstAttribute="centerY" secondItem="uxq-mi-HsN" secondAttribute="centerY" multiplier="1.7" id="8OY-Aq-b97"/>
                             <constraint firstItem="LRm-Ly-qCc" firstAttribute="centerX" secondItem="uxq-mi-HsN" secondAttribute="centerX" id="Cx1-o0-MAM"/>
@@ -567,22 +574,30 @@
                             <constraint firstItem="V44-RM-keH" firstAttribute="leading" secondItem="uxq-mi-HsN" secondAttribute="leading" id="Zal-5N-BHk"/>
                             <constraint firstAttribute="trailing" secondItem="V44-RM-keH" secondAttribute="trailing" id="aSL-g8-XLk"/>
                             <constraint firstItem="xMz-x2-dIb" firstAttribute="centerX" secondItem="uxq-mi-HsN" secondAttribute="centerX" id="em9-eO-6jP"/>
+                            <constraint firstItem="U5k-0r-fli" firstAttribute="centerY" secondItem="uxq-mi-HsN" secondAttribute="centerY" multiplier="0.3" id="eyB-s2-PDK"/>
                             <constraint firstItem="Dtt-hc-0Kc" firstAttribute="top" secondItem="V44-RM-keH" secondAttribute="bottom" id="nh5-A4-9Oa"/>
                             <constraint firstItem="xMz-x2-dIb" firstAttribute="leading" secondItem="uxq-mi-HsN" secondAttribute="leading" constant="25" id="pLu-kV-hEX"/>
                             <constraint firstAttribute="trailing" secondItem="xMz-x2-dIb" secondAttribute="trailing" constant="25" id="saf-Kb-7FD"/>
                             <constraint firstItem="Woa-Qu-Bkh" firstAttribute="centerX" secondItem="uxq-mi-HsN" secondAttribute="centerX" id="shD-BT-qJc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Network Game" id="LdU-B3-9Rn">
+                    <navigationItem key="navigationItem" id="LdU-B3-9Rn">
                         <barButtonItem key="leftBarButtonItem" title="Exit Game" id="ng6-vm-dQV">
                             <color key="tintColor" red="1" green="0.37529118760000002" blue="0.2182290096" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="exitGameBarButtonPressed:" destination="Q1l-5b-0HD" id="wMd-I5-xXs"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="ZAU-dz-4gU">
+                            <connections>
+                                <action selector="refreshButtonPressed:" destination="Q1l-5b-0HD" id="2D1-Zs-h4Z"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="xMz-x2-dIb" id="kfv-97-pNm"/>
+                        <outlet property="messageLabel" destination="V44-RM-keH" id="Qrf-jI-kIk"/>
+                        <outlet property="refreshBarButton" destination="ZAU-dz-4gU" id="CjH-v2-ssg"/>
                         <outlet property="statusLabel" destination="LRm-Ly-qCc" id="Eoi-fm-Tdh"/>
                     </connections>
                 </viewController>

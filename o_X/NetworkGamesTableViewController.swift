@@ -65,7 +65,20 @@ class NetworkGamesTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("networkGameSegue", sender: self)
+        
+        OXGameController.sharedInstance.joinGame(arrayOfGames[indexPath.row].ID) { returnGame, message in
+            
+            if returnGame == nil {
+                self.createAlert("Unable to Join Game", submessage: message!, onDismiss: { (action) in
+                    
+                })
+                return
+            }
+            
+            self.performSegueWithIdentifier("networkGameSegue", sender: self)
+            
+        }
+        
     }
     
     /*
@@ -128,7 +141,20 @@ class NetworkGamesTableViewController: UITableViewController {
     }
     
     @IBAction func addButtonPressed(sender: UIBarButtonItem) {
-        self.performSegueWithIdentifier("networkGameSegue", sender: sender)
+        
+        OXGameController.sharedInstance.createNewGame { returnGame, message in
+            
+            if returnGame == nil {
+                self.createAlert("Unable to Create Game", submessage: message!, onDismiss: { (action) in
+                    
+                })
+                return
+            }
+            
+            self.performSegueWithIdentifier("networkGameSegue", sender: self)
+            
+        }
+    
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

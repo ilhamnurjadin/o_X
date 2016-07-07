@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4RQ-0C-3SP" userLabel="ContainerView">
-                                <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                <rect key="frame" x="200" y="230" width="200" height="200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-Nv-r7P" userLabel="RegisterButton">
-                                        <rect key="frame" x="62.5" y="115" width="75" height="30"/>
+                                        <rect key="frame" x="62" y="115" width="75" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.33451228300000002" blue="0.29735178800000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="Mpz-v7-8xf"/>
@@ -62,9 +62,9 @@
                                     <constraint firstItem="Oc4-nK-6yZ" firstAttribute="centerX" secondItem="4RQ-0C-3SP" secondAttribute="centerX" id="mjC-C4-Nsk"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apl-8Q-0PJ" userLabel="WelcomeLabel">
-                                <rect key="frame" x="265" y="169.5" width="71" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="o_X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apl-8Q-0PJ" userLabel="WelcomeLabel">
+                                <rect key="frame" x="246.5" y="171" width="108" height="78"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="65"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -72,10 +72,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="4RQ-0C-3SP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="51T-5L-gX1"/>
+                            <constraint firstItem="4RQ-0C-3SP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.1" id="51T-5L-gX1"/>
                             <constraint firstItem="4RQ-0C-3SP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q7n-j8-WLy"/>
                             <constraint firstItem="apl-8Q-0PJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kH9-We-y9S"/>
-                            <constraint firstItem="apl-8Q-0PJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.6" id="ztH-w5-A03"/>
+                            <constraint firstItem="apl-8Q-0PJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.7" id="ztH-w5-A03"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="X16-EB-tuQ"/>

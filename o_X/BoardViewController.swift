@@ -12,6 +12,8 @@ class BoardViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var refreshBarButton: UIBarButtonItem!
+    @IBOutlet weak var messageLabel: UILabel!
     
     // Variables
     var networkMode: Bool = false
@@ -23,36 +25,32 @@ class BoardViewController: UIViewController {
         
         super.viewDidLoad()
         
-        statusLabel.text = OXGameController.sharedInstance.getStateInString()
-        newGameButton?.hidden = true
+        if !networkMode {
+            statusLabel.text = OXGameController.sharedInstance.getStateInString(networkMode)
+        }
         
         updateUI()
+        
+        // If network mode is true, then check if host has connected
+        if networkMode {
+            OXGameController.sharedInstance.refreshGame { game, bool, message in
+                
+                /*
+                if let myBool = bool {
+                    if !myBool {
+                        self.disableAllButtons()
+                        self.statusLabel.text = ""
+                        self.messageLabel.text = "Awaiting for Opponent to Join..."
+                    }
+                }
+                 */
+                
+            }
+        }
         
     }
     
     override func viewDidAppear(animated: Bool) {
-        //createAlert("Login Successful", submessage: "Welcome")
-        
-        /*
-        for subview in containerView.subviews {
-            if let button = subview as? UIButton {
-                // change title of buttons
-                button.setTitle("", forState: .Normal)
-                // make buttons clickable
-                button.enabled = true
-            }
-        }
-        
-        for cell in OXGameController.sharedInstance.getCurrentGame().board {
-            
-        }
-        
-        let temp:String = OXGameController.sharedInstance.playMove(buttonTag).rawValue
-        
-        sender.setTitle(temp, forState: .Normal)                                  // sets title of button to X or O, depending on who is playing
-        sender.enabled = false                                                    // make buttons unclickable
-        statusLabel.text = OXGameController.sharedInstance.getStateInString()     // Change status label
-         */
         
     }
     
@@ -60,7 +58,6 @@ class BoardViewController: UIViewController {
         
         print("New game button pressed.")
         restartGame()
-        sender.hidden = true
         
     }
     
@@ -79,20 +76,59 @@ class BoardViewController: UIViewController {
     }
     
     @IBAction func boxButtonPressed(sender: UIButton) {
+        
         let buttonTag = sender.tag
         print("Button \(buttonTag) was pressed!")
         
         let temp:String = OXGameController.sharedInstance.playMove(buttonTag).rawValue
         
-        sender.setTitle(temp, forState: .Normal)                                  // sets title of button to X or O, depending on who is playing
-        sender.enabled = false                                                    // make buttons unclickable
-        statusLabel.text = OXGameController.sharedInstance.getStateInString()     // Change status label
+        sender.setTitle(temp, forState: .Normal)
         
-        checkIfGameEnded()
+        if networkMode {
+            
+            // Serialize board, send to server, and deserialize updated board
+            OXGameController.sharedInstance.playMove { game, message in
+                if game != nil {
+                    print("success")
+                }
+                else {
+                    self.createAlert("Could Not Play Move", submessage: message!, onDismiss: { action in })
+                }
+            }
+        }
+        
+        updateUI()
     }
     
     @IBAction func exitGameBarButtonPressed(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
+        OXGameController.sharedInstance.restartGame()
+        networkMode = false
+    }
+    
+    @IBAction func refreshButtonPressed(sender: UIBarButtonItem) {
+        
+        OXGameController.sharedInstance.refreshGame { game, bool, message in
+            if game != nil {
+                // refresh successful and board was re-deserialized
+                self.updateUI()
+                self.checkIfGameEnded()
+            }
+            else {
+                self.createAlert("Board could not be refreshed", submessage: message!, onDismiss: { action in})
+            }
+            
+            /*
+            if let myBool = bool {
+                if !myBool {
+                    self.disableAllButtons()
+                    self.statusLabel.text = ""
+                    self.messageLabel.text = "Awaiting for Opponent to Join..."
+                }
+            }
+             */
+            
+        }
     }
     
     func checkIfGameEnded() {
@@ -102,58 +138,19 @@ class BoardViewController: UIViewController {
             
             self.statusLabel.text = ""
             
-            // CREATE ALERT
-            // creates an alert (programatically as opposed to using storyboard)
-            let gameOverAlert = UIAlertController(title: "Game Over!", message:  OXGameController.sharedInstance.getStateInString(), preferredStyle: UIAlertControllerStyle.Alert)
+            createAlert("Game Over", submessage: OXGameController.sharedInstance.getStateInString(networkMode)) { action in }
             
-            // creating alert actions (buttons)
-            let alertActionDismiss = UIAlertAction(title: "Dismiss", style: .Cancel, handler: { (action) in
-                // action in the input refers tot he alertActionRed object itself (self-referential)
-                // it is assumed that when you run the code, the alertActionRed has already been created
-                
-                self.newGameButton?.hidden = false
-                
-            })
+            disableAllButtons()
             
-            // add actions/buttons
-            gameOverAlert.addAction(alertActionDismiss)
-            
-            // present the alert in the view
-            self.presentViewController(gameOverAlert, animated: true, completion: nil)
-            
-            
-            for subview in containerView.subviews {
-                if let button = subview as? UIButton {
-                    button.enabled = false
-                }
+            if networkMode {
+                refreshBarButton.enabled = false
             }
-            
         }
     }
-    
-    func createAlert(titleMessage: String, submessage: String) {
         
-        // creates an alert (programatically as opposed to using storyboard)
-        let alert = UIAlertController(title: titleMessage, message:  submessage, preferredStyle: UIAlertControllerStyle.Alert)
-        
-        // creating alert actions (buttons)
-        let alertActionDismiss = UIAlertAction(title: "OK", style: .Cancel, handler: { (action) in
-            // action in the input refers to the alertActionDismiss object itself (self-referential)
-            // it is assumed that when you run the code, the alertActionDismiss has already been created
-            
-        })
-        
-        // add actions/buttons
-        alert.addAction(alertActionDismiss)
-        
-        // present the alert in the view
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-    }
-    
     func restartGame() {
         OXGameController.sharedInstance.restartGame()
-        statusLabel.text = OXGameController.sharedInstance.getStateInString()
+        statusLabel.text = OXGameController.sharedInstance.getStateInString(networkMode)
         
         for subview in containerView.subviews {
             if let button = subview as? UIButton {
@@ -178,6 +175,9 @@ class BoardViewController: UIViewController {
      */
     func updateUI() {
         
+        statusLabel.text = OXGameController.sharedInstance.getStateInString(networkMode)
+        
+        // Makes buttons that are not empty unclickable, and buttons that are empty clickable
         for subview in containerView.subviews {
             if let button = subview as? UIButton {
                 if OXGameController.sharedInstance.getCurrentGame().board[button.tag] != CellType.Empty {
@@ -185,6 +185,39 @@ class BoardViewController: UIViewController {
                     // make buttons clickable
                     button.enabled = false
                 }
+                else {
+                    button.enabled = true
+                }
+            }
+        }
+        
+        // Make all buttons unclickable when not your turn
+        if networkMode {
+            
+            self.title = "Game ID: \(OXGameController.sharedInstance.getCurrentGame().ID)"
+            
+            if OXGameController.sharedInstance.amIHost() {
+                if OXGameController.sharedInstance.getCurrentGame().turnCount() % 2 == 1 {
+                    disableAllButtons()
+                }
+            }
+            else {
+                if OXGameController.sharedInstance.getCurrentGame().turnCount() % 2 == 0 {
+                    disableAllButtons()
+                }
+            }
+        }
+        
+        checkIfGameEnded()
+        
+    }
+    
+    func disableAllButtons() {
+        
+        for subview in containerView.subviews {
+            if let button = subview as? UIButton {
+                // make buttons unclickable
+                button.enabled = false
             }
         }
     }
